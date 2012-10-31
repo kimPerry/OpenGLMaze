@@ -1,0 +1,22 @@
+attribute vec3 v_position;
+attribute vec3 v_normal;
+attribute vec3 v_color;
+attribute vec2 v_vt;
+varying vec3 color;
+varying vec3 N;
+varying vec3 v;
+varying vec2 vt;
+uniform mat4 mvpMatrix;
+uniform mat4 mvMatrix;
+uniform mat4 normMatrix;
+
+void main(void)
+{      
+	v = vec3(mvMatrix * vec4(v_position, 1.0));
+	N = vec3(normalize(normMatrix * vec4(v_normal, 1.0)));
+	gl_Position = mvpMatrix * vec4(v_position, 1.0);
+	color = v_color;
+ 	vt = v_vt;
+}
+
+
